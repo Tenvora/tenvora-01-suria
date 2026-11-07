@@ -1,370 +1,405 @@
-/* ============================================================
-   سُريّة — نظام رواتب سعودي
-   Design language: quiet paper surface, one pine accent,
-   real product UI, hairline discipline. No glow, no glass.
-   ============================================================ */
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سُريّة — نظام الرواتب للمنشآت السعودية</title>
+<meta name="description" content="سُريّة تحسب الرواتب والتأمينات والبدلات تلقائيًا، وتصدر قسائم الراتب وملف تحويل الأجور (WPS) جاهزين في يوم واحد.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 
-:root{
-  --paper:#F7F6F2;
-  --paper-tint:#F1EFE8;
-  --surface:#FFFFFF;
-  --ink:#14201C;
-  --ink-2:#3B4A44;
-  --muted:#71807A;
-  --line:#E2E0D8;
-  --line-strong:#CFCDC3;
-  --accent:#14573C;
-  --accent-dark:#0E4029;
-  --accent-soft:#E7EFE9;
-  --clay:#96683C;
-  --ok:#2F7A52;
+<header class="topbar" id="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="#" aria-label="سُريّة — الصفحة الرئيسية">
+      <svg class="brand__mark" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.2c6 3.1 9 6.6 9 10.6 0 4.6-4 8.4-9 8.4s-9-3.8-9-8.4c0-1.6.5-3 1.4-4.3.4 2.6 1.8 4.2 3.8 4.9-1.1-2.6-.4-5.4 2-8.2.5 3.4 2.2 5.6 5 6.6-1-3.3.1-6.3 3.3-9.1-1.9 2.4-2.3 4.7-1.3 6.9-1.6-4.1-2.6-5.8-5.2-7.4Z" fill="currentColor"/></svg>
+      <span class="brand__name">سُريّة</span>
+    </a>
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="#product">المنتج</a>
+      <a href="#how">كيف تعمل</a>
+      <a href="#calculator">حاسبة الراتب</a>
+      <a href="#pricing">الأسعار</a>
+      <a href="#faq">الأسئلة</a>
+    </nav>
+    <div class="topbar__actions">
+      <a class="btn btn--quiet" href="#signin">تسجيل الدخول</a>
+      <a class="btn btn--solid btn--sm" href="#pricing">ابدأ مجانًا</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="افتح القائمة">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <a href="#product">المنتج</a>
+    <a href="#how">كيف تعمل</a>
+    <a href="#calculator">حاسبة الراتب</a>
+    <a href="#pricing">الأسعار</a>
+    <a href="#faq">الأسئلة</a>
+    <a class="btn btn--solid" href="#pricing">ابدأ مجانًا</a>
+  </div>
+</header>
 
-  --font-display:"Alexandria","IBM Plex Sans Arabic",system-ui,sans-serif;
-  --font-body:"IBM Plex Sans Arabic","Alexandria",system-ui,sans-serif;
-  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+<main id="main">
 
-  --sh-1:0 1px 2px rgba(20,32,28,.04), 0 6px 18px -10px rgba(20,32,28,.10);
-  --sh-2:0 2px 4px rgba(20,32,28,.05), 0 28px 56px -28px rgba(20,32,28,.20);
-  --sh-3:0 1px 1px rgba(20,32,28,.04), 0 48px 80px -40px rgba(20,32,28,.26);
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="chip" data-reveal><span class="chip__dot"></span> متوافق مع التأمينات الاجتماعية ونظام حماية الأجور</p>
+        <h1 data-reveal>رواتب موظفيك،<br>محسوبة ومدقَّقة ومدفوعة<br>في يوم واحد.</h1>
+        <p class="lede" data-reveal>سُريّة تحسب الأجر والبدلات واشتراك التأمينات والضريبة المستقطعة تلقائيًا، ثم تُصدر قسائم الراتب وبيان التحويل البنكي جاهزًا للرفع — لكل موظفيك، كل شهر، من غير ملف إكسل.</p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--solid btn--lg" href="#pricing">ابدأ تجربة <bdi>30</bdi> يومًا</a>
+          <a class="btn btn--link" href="#calculator">جرّب حاسبة الراتب<span aria-hidden="true"> ←</span></a>
+        </div>
+        <ul class="hero__notes" data-reveal>
+          <li>بلا بطاقة ائتمانية</li>
+          <li>البيانات مستضافة داخل المملكة</li>
+          <li>إلغاء في أي وقت</li>
+        </ul>
+      </div>
 
-  --r-sm:10px; --r-md:16px; --r-lg:22px;
-  --wrap:1180px;
-  --gutter:clamp(20px,5vw,56px);
-  --ease:cubic-bezier(.22,.61,.21,1);
-}
+      <div class="hero__visual" data-reveal>
+        <div class="screen" role="img" aria-label="واجهة سُريّة: جدول رواتب الموظفين لهذا الشهر">
+          <div class="screen__bar">
+            <span class="screen__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="screen__url" dir="ltr">app.suria.sa/payroll/2026-11</span>
+          </div>
+          <div class="screen__body">
+            <div class="screen__head">
+              <div>
+                <p class="screen__eyebrow">دورة الرواتب</p>
+                <h2>نوفمبر 2026</h2>
+              </div>
+              <span class="pill pill--ok">مدقَّقة</span>
+            </div>
+            <div class="kpis">
+              <div class="kpi"><span>إجمالي الأجور</span><strong dir="ltr">SAR 184,600</strong></div>
+              <div class="kpi"><span>عدد الموظفين</span><strong dir="ltr">27</strong></div>
+              <div class="kpi"><span>تاريخ الصرف</span><strong dir="ltr">28 نوفمبر</strong></div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr><th scope="col">الموظف</th><th scope="col">الأجر الشامل</th><th scope="col">التأمينات</th><th scope="col">الصافي</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="who"><span class="mono-av">سم</span><span>سارة المطيري<br><small>مالية</small></span></td><td dir="ltr">18,400</td><td dir="ltr">1,794</td><td dir="ltr" class="net">16,606</td></tr>
+                <tr><td class="who"><span class="mono-av">عح</span><span>عبدالله الحربي<br><small>تقنية</small></span></td><td dir="ltr">22,750</td><td dir="ltr">2,218</td><td dir="ltr" class="net">20,532</td></tr>
+                <tr><td class="who"><span class="mono-av">نز</span><span>نورة الزهراني<br><small>تسويق</small></span></td><td dir="ltr">14,900</td><td dir="ltr">1,453</td><td dir="ltr" class="net">13,447</td></tr>
+                <tr><td class="who"><span class="mono-av">فق</span><span>فيصل القحطاني<br><small>عمليات</small></span></td><td dir="ltr">11,250</td><td dir="ltr">1,097</td><td dir="ltr" class="net">10,153</td></tr>
+              </tbody>
+            </table>
+            <div class="screen__foot">
+              <span class="btn btn--soft btn--sm">تصدير ملف WPS</span>
+              <span class="muted">27 قسيمة جاهزة للإرسال</span>
+            </div>
+          </div>
+        </div>
+        <div class="float-card" aria-hidden="true">
+          <p class="float-card__label">قسيمة راتب</p>
+          <p class="float-card__title">سارة المطيري</p>
+          <div class="float-card__row"><span>الصافي المحوّل</span><strong dir="ltr">16,606 SAR</strong></div>
+          <div class="float-card__bar"><i style="width:86%"></i></div>
+          <p class="float-card__note">تم التحويل عبر WPS · 28 نوفمبر</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink-2);
-  font-family:var(--font-body);
-  font-size:17px;
-  line-height:1.85;
-  font-weight:400;
-  letter-spacing:0;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-/* paper grain — the single thing that stops flat digital surfaces looking synthetic */
-body::after{
-  content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-button,input,select{font:inherit;color:inherit}
-h1,h2,h3,h4{
-  font-family:var(--font-display);color:var(--ink);margin:0;
-  font-weight:600;line-height:1.28;letter-spacing:0;
-}
-p{margin:0}
-ul,ol{margin:0;padding:0;list-style:none}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.skip{position:absolute;inset-block-start:-100px;inset-inline-start:16px;z-index:50;background:var(--surface);padding:10px 18px;border-radius:var(--r-sm)}
-.skip:focus{inset-block-start:12px}
-.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
-.wrap--narrow{max-width:820px}
-[dir="ltr"],strong[dir],td[dir],b[dir],.screen__url{font-feature-settings:"tnum"}
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="wrap">
+      <p class="trust__label">منشآت سعودية تستخدم سُريّة كل شهر</p>
+      <ul class="trust__list">
+        <li>مجموعة الرياض الحديثة</li><li>دار النخيل</li><li>شركة أفق المقاولات</li>
+        <li>مصنع البان الوطن</li><li>عيادات صفا</li><li>مؤسسة بحر التجارة</li>
+      </ul>
+    </div>
+  </section>
 
-/* ---------- buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:.5em;
-  font-family:var(--font-display);font-weight:500;font-size:.95rem;line-height:1;
-  padding:.95rem 1.7rem;border-radius:999px;border:0;cursor:pointer;
-  transition:transform .35s var(--ease),background-color .3s var(--ease),box-shadow .35s var(--ease),color .3s var(--ease);
-}
-.btn--solid{background:var(--accent);color:#F6FAF6;box-shadow:var(--sh-1)}
-.btn--solid:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:var(--sh-2)}
-.btn--quiet{background:transparent;color:var(--ink);padding:.7rem 1.1rem}
-.btn--quiet:hover{color:var(--accent)}
-.btn--ghost{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-strong)}
-.btn--ghost:hover{box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent);transform:translateY(-2px)}
-.btn--soft{background:var(--accent-soft);color:var(--accent-dark);box-shadow:none}
-.btn--link{background:none;padding-inline:0;color:var(--ink);border-radius:0}
-.btn--link span{transition:transform .35s var(--ease)}
-.btn--link:hover{color:var(--accent)}
-.btn--link:hover span{transform:translateX(-4px)}
-.btn--link--light{color:#EAF1EC}
-.btn--sm{padding:.62rem 1.15rem;font-size:.85rem}
-.btn--lg{padding:1.1rem 2.1rem;font-size:1rem}
-.btn--block{display:flex;width:100%}
+  <!-- PROBLEM / SOLUTION -->
+  <section class="section" id="product">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--warn">المشكلة</p>
+      <h2 class="section__title">نهاية الشهر تتحول إلى ثلاثة أيام من التدقيق اليدوي.</h2>
+      <div class="cards-3">
+        <article class="card" data-reveal>
+          <h3>أخطاء في البدلات</h3>
+          <p>بدل السكن والنقل والمكافآت تتغير من عقد لآخر، وأي خطأ فيها يعني راتبًا ناقصًا وموظفًا فقد ثقته.</p>
+        </article>
+        <article class="card" data-reveal>
+          <h3>احتساب يدوي للتأمينات</h3>
+          <p>نسبة الموظف والمنشأة وسقف الأجر الخاضع تُحسب في جدول، وغالبًا تُحسب على غير الأساس الصحيح.</p>
+        </article>
+        <article class="card" data-reveal>
+          <h3>بيان تحويل غير مطابق</h3>
+          <p>البنك يرفض الملف إذا اختلف التنسيق أو تأخر، فيُعاد كل شيء في آخر يوم عمل.</p>
+        </article>
+      </div>
 
-/* ---------- top bar ---------- */
-.topbar{position:sticky;inset-block-start:0;z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(140%) blur(10px);transition:box-shadow .4s var(--ease),border-color .4s var(--ease);border-block-end:1px solid transparent}
-.topbar.is-stuck{border-block-end-color:var(--line);box-shadow:0 10px 24px -22px rgba(20,32,28,.4)}
-.topbar__inner{display:flex;align-items:center;gap:2rem;block-size:76px}
-.brand{display:flex;align-items:center;gap:.6rem;color:var(--ink)}
-.brand__mark{inline-size:26px;block-size:26px;color:var(--accent)}
-.brand__name{font-family:var(--font-display);font-weight:600;font-size:1.28rem;letter-spacing:0}
-.nav{display:flex;gap:1.6rem;margin-inline-start:auto}
-.nav a{font-size:.93rem;color:var(--ink-2);position:relative;padding-block:.4rem}
-.nav a::after{content:"";position:absolute;inset-inline:0;inset-block-end:0;block-size:1px;background:var(--accent);transform:scaleX(0);transform-origin:inline-end;transition:transform .4s var(--ease)}
-.nav a:hover{color:var(--ink)}
-.nav a:hover::after{transform:scaleX(1)}
-.topbar__actions{display:flex;align-items:center;gap:.4rem}
-.menu-btn{display:none;inline-size:42px;block-size:42px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--line);flex-direction:column;align-items:center;justify-content:center;gap:5px}
-.menu-btn span{display:block;inline-size:17px;block-size:1.5px;background:var(--ink);transition:transform .3s var(--ease)}
-.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(3.2px) rotate(45deg)}
-.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-3.2px) rotate(-45deg)}
-.mobile-nav{display:grid;gap:.2rem;padding:.6rem var(--gutter) 1.4rem;border-block-end:1px solid var(--line);background:var(--paper)}
-.mobile-nav[hidden]{display:none}
-.mobile-nav a{padding:.75rem 0;border-block-end:1px solid var(--line);font-family:var(--font-display)}
-.mobile-nav .btn{margin-block-start:.8rem;border:0}
+      <div class="panel" data-reveal>
+        <div class="panel__copy">
+          <p class="eyebrow">الحل</p>
+          <h3>قاعدة أجر واحدة، تُحسب مرة وتُطبَّق على الكل.</h3>
+          <p>تُدخل بيانات الموظف مرة واحدة، وسُريّة تشتق منها الأجر الشامل والاشتراكات وصافي الراتب وقسيمة الراتب وبيان البنك — بنفس الأرقام، كل دورة.</p>
+        </div>
+        <ul class="checks">
+          <li><span class="checks__ico" aria-hidden="true">✓</span> جدول أجر لكل موظف: أساسي + بدل سكن + بدل نقل + بدلات أخرى</li>
+          <li><span class="checks__ico" aria-hidden="true">✓</span> احتساب آلي لاشتراك التأمينات مع تطبيق سقف الأجر الخاضع</li>
+          <li><span class="checks__ico" aria-hidden="true">✓</span> خصم الإجازات والمرن والمتغير في نفس الدورة</li>
+          <li><span class="checks__ico" aria-hidden="true">✓</span> ملف WPS وقسائم PDF بمواصفات البنك مباشرة</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-/* ---------- hero ---------- */
-.hero{padding-block:clamp(48px,7vw,92px) clamp(56px,8vw,110px);position:relative;overflow:clip}
-.hero::before{content:"";position:absolute;inset-block-start:-280px;inset-inline-end:-180px;inline-size:760px;block-size:760px;
-  background:radial-gradient(circle at center,rgba(20,87,60,.07),rgba(20,87,60,0) 62%);pointer-events:none}
-.hero__grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:clamp(36px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(2.35rem,4.6vw,3.75rem);line-height:1.16;margin-block:1.1rem 1.3rem;max-inline-size:16ch}
-.chip{display:inline-flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--ink);background:var(--surface);
-  border:1px solid var(--line);border-radius:999px;padding:.42rem 1rem .42rem .85rem;box-shadow:var(--sh-1)}
-.chip__dot{inline-size:7px;block-size:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(47,122,82,.14)}
-.lede{font-size:1.09rem;max-inline-size:52ch;color:var(--ink-2)}
-.hero__cta{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-block:2.1rem 1.4rem}
-.hero__notes{display:flex;flex-wrap:wrap;gap:.55rem 1.1rem;font-size:.83rem;color:var(--muted)}
-.hero__notes li{position:relative;padding-inline-start:.95rem}
-.hero__notes li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:.72em;inline-size:4px;block-size:4px;border-radius:50%;background:var(--line-strong)}
+  <!-- HOW -->
+  <section class="section section--tint" id="how">
+    <div class="wrap">
+      <p class="eyebrow">طريقة العمل</p>
+      <h2 class="section__title">أربع خطوات، من العقد إلى إشعار الراتب.</h2>
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <span class="step__num" dir="ltr">01</span>
+          <div><h3>أضف الموظفين وعقودهم</h3><p>استورد ملفًا أو أدخل البيانات يدويًا. كل عقد يحفظ الأساسي والبدلات ونسبة الاشتراك وحالة التسجيل.</p></div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num" dir="ltr">02</span>
+          <div><h3>راجع المتغيرات</h3><p>العمولات والإجازات والخصومات تدخل من شاشة واحدة، وكل تعديل يسجل باسم من أجراه ووقته.</p></div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num" dir="ltr">03</span>
+          <div><h3>دقِّق وأقفل الدورة</h3><p>سُريّة تُظهر لك الفروقات عن الشهر السابق وتوقف أي بند يخرج عن الحدود المسموحة قبل الإقفال.</p></div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num" dir="ltr">04</span>
+          <div><h3>اصرف وأرسل القسائم</h3><p>ارفع ملف WPS للبنك، وتصل قسائم الراتب إلى الموظفين في نفس اللحظة بصيغة PDF.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-/* ---------- product screen (the credibility anchor) ---------- */
-.hero__visual{position:relative}
-.screen{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-3);overflow:hidden}
-.screen__bar{display:flex;align-items:center;gap:.9rem;padding:.75rem 1.1rem;background:var(--paper-tint);border-block-end:1px solid var(--line)}
-.screen__dots{display:flex;gap:5px}
-.screen__dots i{inline-size:8px;block-size:8px;border-radius:50%;background:var(--line-strong)}
-.screen__url{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);background:var(--surface);
-  border:1px solid var(--line);border-radius:6px;padding:.22rem .7rem;margin-inline:auto}
-.screen__body{padding:1.4rem 1.5rem 1.2rem}
-.screen__head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-.screen__eyebrow{font-size:.74rem;color:var(--muted)}
-.screen__head h2{font-size:1.35rem;margin-block-start:.15rem}
-.pill{font-size:.72rem;padding:.28rem .7rem;border-radius:999px;white-space:nowrap}
-.pill--ok{background:var(--accent-soft);color:var(--accent-dark)}
-.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin-block:1.2rem .9rem}
-.kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:.7rem .85rem}
-.kpi span{display:block;font-size:.72rem;color:var(--muted);line-height:1.5}
-.kpi strong{font-family:var(--font-mono);font-weight:500;font-size:1.02rem;color:var(--ink);direction:ltr;unicode-bidi:isolate;display:block;margin-block-start:.2rem}
-.table{inline-size:100%;border-collapse:collapse;font-size:.85rem}
-.table th{text-align:start;font-family:var(--font-body);font-weight:500;font-size:.74rem;color:var(--muted);
-  padding:.5rem .4rem;border-block-end:1px solid var(--line)}
-.table td{padding:.62rem .4rem;border-block-end:1px solid var(--line);color:var(--ink-2);vertical-align:middle}
-.table td:not(.who){font-family:var(--font-mono);font-size:.82rem;text-align:start;direction:ltr;unicode-bidi:isolate;color:var(--ink)}
-.table .net{color:var(--accent-dark);font-weight:500}
-.who{display:flex;align-items:center;gap:.6rem}
-.who small{display:block;font-size:.72rem;color:var(--muted);line-height:1.4}
-.mono-av{flex:0 0 auto;inline-size:30px;block-size:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent-dark);
-  display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600}
-.screen__foot{display:flex;align-items:center;gap:1rem;margin-block-start:1rem}
-.muted{font-size:.78rem;color:var(--muted)}
-.float-card{position:absolute;inset-block-end:-46px;inset-inline-start:-64px;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-md);box-shadow:var(--sh-2);padding:1rem 1.15rem;inline-size:236px}
-.float-card__label{font-size:.7rem;color:var(--muted)}
-.float-card__title{font-family:var(--font-display);font-weight:600;color:var(--ink);font-size:1rem;margin-block:.15rem .6rem}
-.float-card__row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;font-size:.78rem;color:var(--ink-2)}
-.float-card__row strong{font-family:var(--font-mono);font-weight:500;color:var(--accent-dark);direction:ltr;unicode-bidi:isolate}
-.float-card__bar{block-size:4px;background:var(--paper-tint);border-radius:4px;margin-block:.6rem .55rem;overflow:hidden}
-.float-card__bar i{display:block;inline-size:86%;block-size:100%;background:var(--accent);border-radius:4px}
-.float-card__note{font-size:.72rem;color:var(--muted)}
+  <!-- CALCULATOR DEMO -->
+  <section class="section" id="calculator">
+    <div class="wrap calc">
+      <div class="calc__intro">
+        <p class="eyebrow">نظام تجريبي</p>
+        <h2 class="section__title">احسب راتبًا كما يحسبها سُريّة.</h2>
+        <p>هذه الحاسبة تطبق نفس القواعد المستخدمة داخل المنتج: الأجر الشامل، اشتراك الموظف، سقف الأجر الخاضع للتأمينات، وصافي الراتب. القيم بالريال السعودي.</p>
+                <ul class="rules">
+          <li><span>اشتراك الموظف السعودي</span><bdi>9.75%</bdi></li>
+          <li><span>اشتراك المنشأة عن السعودي</span><bdi>12.75%</bdi></li>
+          <li><span>أخطار مهنية لغير السعودي</span><bdi>2%</bdi></li>
+          <li><span>سقف الأجر الخاضع</span><bdi>45,000 SAR</bdi></li>
+        </ul>
+<p class="calc__disclaimer">أداة توضيحية داخل المتصفح فقط، ولا تُعد مرجعًا قانونيًا للاكتتاب النهائي.</p>
+      </div>
 
-/* ---------- trust ---------- */
-.trust{border-block:1px solid var(--line);background:var(--surface)}
-.trust .wrap{padding-block:1.9rem}
-.trust__label{font-size:.8rem;color:var(--muted);text-align:center;margin-block-end:1.1rem}
-.trust__list{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 2.6rem}
-.trust__list li{font-family:var(--font-display);font-size:.95rem;font-weight:400;color:var(--ink);opacity:.42;transition:opacity .4s var(--ease)}
-.trust__list:hover li{opacity:.28}
-.trust__list li:hover{opacity:.9}
+      <form class="calc__form" id="calcForm" autocomplete="off">
+        <div class="field">
+          <label for="basic">الراتب الأساسي</label>
+          <div class="input"><span dir="ltr">SAR</span><input id="basic" name="basic" type="number" inputmode="decimal" min="0" step="100" value="12000"></div>
+        </div>
+        <div class="field field--half">
+          <label for="housing">بدل السكن</label>
+          <div class="input"><span dir="ltr">SAR</span><input id="housing" name="housing" type="number" inputmode="decimal" min="0" step="100" value="3000"></div>
+        </div>
+        <div class="field field--half">
+          <label for="transport">بدل النقل</label>
+          <div class="input"><span dir="ltr">SAR</span><input id="transport" name="transport" type="number" inputmode="decimal" min="0" step="100" value="800"></div>
+        </div>
+        <div class="field field--half">
+          <label for="other">بدلات ومكافآت أخرى</label>
+          <div class="input"><span dir="ltr">SAR</span><input id="other" name="other" type="number" inputmode="decimal" min="0" step="100" value="500"></div>
+        </div>
+        <div class="field field--half">
+          <label for="deduct">خصومات الدورة</label>
+          <div class="input"><span dir="ltr">SAR</span><input id="deduct" name="deduct" type="number" inputmode="decimal" min="0" step="50" value="0"></div>
+        </div>
+        <div class="field field--switch">
+          <label class="switch">
+            <input type="checkbox" id="gosi" checked>
+            <span class="switch__track" aria-hidden="true"></span>
+            <span class="switch__text">موظف سعودي مسجَّل في التأمينات</span>
+          </label>
+        </div>
+      </form>
 
-/* ---------- sections ---------- */
-.section{padding-block:clamp(66px,9vw,120px)}
-.section--tint{background:var(--paper-tint)}
-.eyebrow{font-family:var(--font-display);font-size:.8rem;font-weight:500;color:var(--accent);display:flex;align-items:center;gap:.7rem;margin-block-end:1rem}
-.eyebrow::before{content:"";inline-size:26px;block-size:1px;background:currentColor;opacity:.5}
-.eyebrow--warn{color:var(--clay)}
-.section__title{font-size:clamp(1.65rem,3.1vw,2.4rem);max-inline-size:26ch;margin-block-end:2.6rem}
-.cards-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1.1rem}
-.card{background:var(--surface);border-radius:var(--r-md);padding:1.7rem 1.6rem;box-shadow:var(--sh-1);
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.card h3{font-size:1.1rem;margin-block-end:.55rem}
-.card p{font-size:.95rem}
+      <div class="calc__out" id="calcOut" aria-live="polite">
+        <div class="out-row"><span>الأجر الشامل</span><strong dir="ltr" id="oTotal">—</strong></div>
+        <div class="out-row"><span>الأجر الخاضع للتأمينات</span><strong dir="ltr" id="oInsured">—</strong></div>
+        <div class="out-row"><span>اشتراك الموظف <small><bdi>9.75%</bdi></small></span><strong dir="ltr" id="oEmployee">—</strong></div>
+        <div class="out-row out-row--main"><span>صافي الراتب</span><strong dir="ltr" id="oNet">—</strong></div>
+        <div class="out-row"><span>مستحق المنشأة <small><bdi>12.75%</bdi></small></span><strong dir="ltr" id="oEmployer">—</strong></div>
+        <div class="out-bar"><i id="oBar"></i></div>
+        <p class="out-cap" id="oCap">—</p>
+      </div>
+    </div>
+  </section>
 
-.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4vw,56px);
-  background:var(--surface);border-radius:var(--r-lg);padding:clamp(28px,4vw,46px);box-shadow:var(--sh-2);margin-block-start:2.6rem}
-.panel__copy h3{font-size:1.4rem;margin-block-end:.8rem;max-inline-size:22ch}
-.panel__copy p{font-size:.98rem}
-.checks{display:grid;gap:.65rem;align-content:center}
-.checks li{display:flex;gap:.8rem;align-items:flex-start;background:var(--paper);border-radius:var(--r-sm);
-  padding:.85rem 1.05rem;font-size:.92rem;color:var(--ink);transition:background-color .35s var(--ease)}
-.checks li:hover{background:var(--accent-soft)}
-.checks__ico{flex:0 0 auto;inline-size:22px;block-size:22px;border-radius:50%;background:var(--accent);color:#fff;
-  display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;margin-block-start:.28rem}
+  <!-- PHOTO BAND -->
+  <section class="band">
+    <figure class="band__fig">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Riyadh_Skyline.jpg/1920px-Riyadh_Skyline.jpg" alt="أفق مدينة الرياض" loading="lazy" width="1920" height="1082">
+    </figure>
+    <div class="wrap band__content">
+      <div class="band__stats">
+        <div><strong dir="ltr">1,400+</strong><span>منشأة سعودية</span></div>
+        <div><strong dir="ltr">96,000</strong><span>قسيمة راتب شهريًا</span></div>
+        <div><strong dir="ltr">0</strong><span>ملفات مرفوضة من البنك</span></div>
+      </div>
+    </div>
+  </section>
 
-/* ---------- steps ---------- */
-.steps{display:grid;gap:0;border-block-start:1px solid var(--line-strong)}
-.step{display:grid;grid-template-columns:96px minmax(0,1fr);gap:clamp(16px,3vw,40px);
-  padding-block:2rem;border-block-end:1px solid var(--line);transition:background-color .4s var(--ease)}
-.step:hover{background:color-mix(in srgb,var(--surface) 55%,transparent)}
-.step__num{font-family:var(--font-mono);font-size:.9rem;color:var(--accent);padding-block-start:.3rem}
-.step h3{font-size:1.22rem;margin-block-end:.45rem}
-.step p{max-inline-size:62ch;font-size:.97rem}
+  <!-- PRICING -->
+  <section class="section section--tint" id="pricing">
+    <div class="wrap">
+      <p class="eyebrow">الأسعار</p>
+      <h2 class="section__title">سعر واضح لكل موظف، بلا رسوم إعداد.</h2>
+      <div class="toggle" role="group" aria-label="دورة الفوترة">
+        <button class="toggle__btn is-on" data-cycle="m" aria-pressed="true">شهري</button>
+        <button class="toggle__btn" data-cycle="y" aria-pressed="false">سنوي <span>وفّر <bdi>20%</bdi></span></button>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <h3>البداية</h3>
+          <p class="plan__price"><b dir="ltr" data-m="199" data-y="159">199</b><span>ريال / شهريًا</span></p>
+          <p class="plan__for">حتى <bdi>10</bdi> موظفين</p>
+          <ul>
+            <li>دورة رواتب شهرية كاملة</li>
+            <li>قسائم راتب PDF</li>
+            <li>ملف WPS جاهز</li>
+            <li>دعم بالبريد خلال يوم عمل</li>
+          </ul>
+          <a class="btn btn--ghost btn--block" href="#signin">ابدأ التجربة</a>
+        </article>
+        <article class="plan plan--feature">
+          <p class="plan__badge">الأكثر اختيارًا</p>
+          <h3>النمو</h3>
+          <p class="plan__price"><b dir="ltr" data-m="449" data-y="359">449</b><span>ريال / شهريًا</span></p>
+          <p class="plan__for">حتى <bdi>60</bdi> موظفًا</p>
+          <ul>
+            <li>كل ما في البداية</li>
+            <li>مكافآت المبيعات والعمولات</li>
+            <li>سجل تدقيق لكل تعديل</li>
+            <li>تقارير التأمينات الشهرية</li>
+            <li>دعم مباشر خلال ساعتين</li>
+          </ul>
+          <a class="btn btn--solid btn--block" href="#signin">ابدأ التجربة</a>
+        </article>
+        <article class="plan">
+          <h3>المنشآت الكبيرة</h3>
+          <p class="plan__price"><b>حسب الاتفاق</b></p>
+          <p class="plan__for">أكثر من <bdi>60</bdi> موظفًا</p>
+          <ul>
+            <li>كل ما في النمو</li>
+            <li>عدة فروع ومراكز تكلفة</li>
+            <li>تكامل مع نظامكم عبر API</li>
+            <li>مدير حساب متخصّص</li>
+          </ul>
+          <a class="btn btn--ghost btn--block" href="#signin">تحدّث مع المبيعات</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
-/* ---------- calculator ---------- */
-.calc{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(30px,4vw,64px);align-items:start}
-.calc__intro{grid-column:1;grid-row:1/span 2}
-.calc__form{grid-column:2}
-.calc__out{grid-column:2}
-.calc__intro .section__title{margin-block-end:1.2rem}
-.calc__disclaimer{font-size:.82rem;color:var(--muted);margin-block-start:1.2rem;padding-inline-start:1rem;border-inline-start:2px solid var(--line-strong)}
-.rules{display:grid;margin-block:1.8rem .4rem;border-block-start:1px solid var(--line-strong)}
-.rules li{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-block:.72rem;border-block-end:1px solid var(--line);font-size:.9rem;color:var(--ink-2)}
-.rules bdi{font-family:var(--font-mono);font-size:.92rem;color:var(--ink)}
-.calc__form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem 1.2rem;
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,3vw,30px);box-shadow:var(--sh-2)}
-.field{display:grid;gap:.4rem}
-.field--half{grid-column:span 1}
-.field:first-child,.field--switch{grid-column:1/-1}
-.field label{font-size:.84rem;color:var(--ink);font-weight:500}
-.input{display:flex;align-items:center;gap:.6rem;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);
-  padding:.6rem .85rem;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
-.input:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(20,87,60,.10)}
-.input span{font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}
-.input input{flex:1;min-inline-size:0;background:none;border:0;font-family:var(--font-mono);font-size:1rem;color:var(--ink);direction:ltr;text-align:end}
-.input input:focus{outline:none}
-.input input::-webkit-outer-spin-button,.input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.switch{display:flex;align-items:center;gap:.75rem;cursor:pointer;font-size:.9rem;color:var(--ink)}
-.switch input{position:absolute;opacity:0;pointer-events:none}
-.switch__track{inline-size:42px;block-size:24px;border-radius:999px;background:var(--line-strong);position:relative;transition:background-color .3s var(--ease);flex:0 0 auto}
-.switch__track::after{content:"";position:absolute;inset-block-start:3px;inset-inline-start:3px;inline-size:18px;block-size:18px;border-radius:50%;background:var(--surface);box-shadow:var(--sh-1);transition:transform .3s var(--ease)}
-.switch input:checked + .switch__track{background:var(--accent)}
-.switch input:checked + .switch__track::after{transform:translateX(-18px)}
-.switch input:focus-visible + .switch__track{outline:2px solid var(--accent);outline-offset:3px}
+  <!-- VOICES -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">من داخل المنشآت</p>
+      <h2 class="section__title">ماذا تغيّر بعد الشهر الأول.</h2>
+      <div class="quotes">
+        <figure class="quote" data-reveal>
+          <blockquote>كنا نغلق الدورة في ثلاثة أيام. الآن أقفلها في ساعة وأراجع الفروقات على شاشة واحدة.</blockquote>
+          <figcaption><span class="mono-av">مط</span><b>منال المطيري</b><i>مديرة مالية · دار النخيل</i></figcaption>
+        </figure>
+        <figure class="quote" data-reveal>
+          <blockquote>أول مرة يرفض البنك ملف التحويل كان قبل سُريّة. من ستة أشهر والبيان يمشي من أول رفع.</blockquote>
+          <figcaption><span class="mono-av">شح</span><b>سلطان الشهراني</b><i>شؤون إدارية · أفق المقاولات</i></figcaption>
+        </figure>
+        <figure class="quote" data-reveal>
+          <blockquote>حساب التأمينات كان أكبر مصدر قلق في المراجعة. كل رقم الآن له سطر واضح يمكن تتبعه.</blockquote>
+          <figcaption><span class="mono-av">يع</span><b>يوسف العتيبي</b><i>شريك مؤسس · عيادات صفا</i></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-.calc__out{background:var(--ink);color:#DCE6E0;border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);margin-block-start:1.4rem;box-shadow:var(--sh-2)}
-.calc__form + .calc__out{margin-block-start:0}
-.out-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.72rem;border-block-end:1px solid rgba(220,230,224,.12);font-size:.9rem}
-.out-row small{color:#93A79D;font-size:.76rem}
-.out-row strong{font-family:var(--font-mono);font-weight:500;font-size:1.02rem;color:#F2F6F3;direction:ltr;unicode-bidi:isolate;transition:color .3s var(--ease)}
-.out-row--main{border-block-end-width:1px}
-.out-row--main span{font-family:var(--font-display);font-size:1rem;color:#fff}
-.out-row--main strong{font-size:1.5rem;color:#8FD8B0}
-.out-bar{block-size:5px;border-radius:5px;background:rgba(220,230,224,.14);margin-block:1.1rem .8rem;overflow:hidden}
-.out-bar i{display:block;inline-size:0;block-size:100%;background:linear-gradient(90deg,#2F7A52,#8FD8B0);border-radius:5px;transition:inline-size .6s var(--ease)}
-.out-cap{font-size:.8rem;color:#93A79D;line-height:1.7}
-.is-flash strong{color:#fff}
+  <!-- FAQ -->
+  <section class="section section--tint" id="faq">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow">أسئلة متكررة</p>
+      <h2 class="section__title">قبل أن تبدأ.</h2>
+      <div class="faq">
+        <details>
+          <summary>هل تحتسب سُريّة اشتراك التأمينات تلقائيًا؟</summary>
+          <p>نعم. يُطبَّق اشتراك الموظف <bdi>9.75%</bdi> واشتراك المنشأة <bdi>12.75%</bdi> على الأجر الخاضع، مع وقف الاحتساب عند سقف الأجر الخاضع <bdi>(45,000 ريال)</bdi>. لغير السعوديين يُحتسب اشتراك الأخطار المهنية فقط على المنشأة.</p>
+        </details>
+        <details>
+          <summary>ماذا لو راتب الموظف فيه بدل سكن بنسبة مختلفة؟</summary>
+          <p>كل عقد يحمل قواعده الخاصة: نسبة البدل أو مبلغ ثابت، وتاريخ بدء، وأي استثناء. القاعدة تُطبَّق على كل دورة ولا تحتاج تعديلًا شهريًا.</p>
+        </details>
+        <details>
+          <summary>أين تُخزَّن بيانات الموظفين؟</summary>
+          <p>في مراكز بيانات داخل المملكة، مع تشفير أثناء النقل وأثناء التخزين، ونسخ احتياطي يومي. لا نشارك أي بيانات مع طرف ثالث.</p>
+        </details>
+        <details>
+          <summary>هل يمكن الرجوع عن دورة بعد إقفالها؟</summary>
+          <p>يمكن فتح الدورة لتصحيح خطأ واحد أو أكثر. كل تصحيح يسجل في سجل التدقيق باسم المستخدم والوقت والسبب، ويصدر قسيمة معدّلة للموظف.</p>
+        </details>
+        <details>
+          <summary>كم يستغرق الانتقال من نظامنا الحالي؟</summary>
+          <p>عادةً أقل من أسبوع: نرفع جدول الموظفين الحالي، نطابق أرصدة نهاية الخدمة والإجازات، ثم نجري دورة تجريبية واحدة قبل الاعتماد.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-/* ---------- photo band ---------- */
-.band{position:relative;background:var(--ink)}
-.band__fig{margin:0;block-size:clamp(320px,46vw,520px);overflow:hidden}
-.band__fig img{inline-size:100%;block-size:100%;object-fit:cover;object-position:center 62%;filter:saturate(.92) contrast(1.02)}
-.band__fig::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,32,28,.88),rgba(20,32,28,.12) 58%,rgba(20,32,28,.34))}
-.band__content{position:absolute;inset-inline:0;inset-block-end:0;padding-block-end:clamp(28px,4vw,48px)}
-.band__stats{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px)}
-.band__stats strong{display:block;font-family:var(--font-mono);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.5rem);color:#fff;direction:ltr;unicode-bidi:isolate;line-height:1.2}
-.band__stats span{font-size:.86rem;color:rgba(236,242,238,.78)}
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap cta__inner">
+      <h2>جرّب دورة رواتب كاملة على بياناتك.</h2>
+      <p>ثلاثون يومًا بكل مزايا خطة النمو، من غير بطاقة، ومن غير التزام.</p>
+      <div class="cta__actions">
+        <a class="btn btn--solid btn--lg" href="#signin">أنشئ حساب منشأتك</a>
+        <a class="btn btn--link btn--link--light" href="#calculator">ارجع للحاسبة</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-/* ---------- pricing ---------- */
-.toggle{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.28rem;margin-block-end:2.2rem}
-.toggle__btn{background:none;border:0;border-radius:999px;padding:.5rem 1.25rem;font-size:.88rem;color:var(--muted);cursor:pointer;transition:color .3s var(--ease),background-color .3s var(--ease)}
-.toggle__btn span{font-size:.74rem;color:var(--clay);margin-inline-start:.35rem}
-.toggle__btn.is-on{background:var(--accent);color:#fff}
-.toggle__btn.is-on span{color:rgba(255,255,255,.72)}
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1.2rem;align-items:start}
-.plan{background:var(--surface);border-radius:var(--r-lg);padding:1.9rem 1.7rem;box-shadow:var(--sh-1);position:relative;
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.plan:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.plan h3{font-size:1.15rem}
-.plan__price{display:flex;align-items:baseline;gap:.5rem;margin-block:1rem .3rem}
-.plan__price b{font-family:var(--font-mono);font-weight:500;font-size:2.15rem;color:var(--ink);direction:ltr;unicode-bidi:isolate;line-height:1}
-.plan__price span{font-size:.82rem;color:var(--muted)}
-.plan__for{font-size:.85rem;color:var(--muted);padding-block-end:1.1rem;border-block-end:1px solid var(--line);margin-block-end:1.1rem}
-.plan ul{display:grid;gap:.62rem;margin-block-end:1.7rem;font-size:.9rem}
-.plan li{position:relative;padding-inline-start:1.15rem}
-.plan li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:.72em;inline-size:5px;block-size:5px;border-radius:50%;background:var(--accent)}
-.plan--feature{box-shadow:var(--sh-2);border:1px solid var(--accent)}
-.plan__badge{position:absolute;inset-block-start:-13px;inset-inline-start:1.7rem;background:var(--accent);color:#fff;font-size:.74rem;padding:.3rem .85rem;border-radius:999px}
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <span class="brand__name">سُريّة</span>
+      <p>نظام رواتب سعودي للمنشآت من <bdi>10</bdi> إلى <bdi>500</bdi> موظف.</p>
+      <p class="footer__loc">الرياض · المملكة العربية السعودية</p>
+    </div>
+    <nav class="footer__col" aria-label="المنتج">
+      <h4>المنتج</h4>
+      <a href="#product">دورة الرواتب</a><a href="#how">الإجازات</a><a href="#calculator">حاسبة التأمينات</a><a href="#pricing">الأسعار</a>
+    </nav>
+    <nav class="footer__col" aria-label="الشركة">
+      <h4>الشركة</h4>
+      <a href="#">من نحن</a><a href="#">الشروط والأحكام</a><a href="#">سياسة الخصوصية</a><a href="#">تواصل معنا</a>
+    </nav>
+    <nav class="footer__col" aria-label="الدعم">
+      <h4>الدعم</h4>
+      <a href="#faq">الأسئلة الشائعة</a><a href="#">دليل البدء</a><a href="#">حالة الخدمة</a>
+    </nav>
+  </div>
+  <div class="wrap footer__base">
+    <p>© 2026 سُريّة. جميع الحقوق محفوظة.</p>
+    <p class="footer__credit">من صناعة <span dir="ltr">Tenvora</span></p>
+    <p class="footer__attr">صورة الأفق: <a href="https://commons.wikimedia.org/wiki/File:Riyadh_Skyline.jpg" rel="license noopener" target="_blank">ويكيميديا كومنز · CC BY-SA</a></p>
+  </div>
+</footer>
 
-/* ---------- quotes ---------- */
-.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1.2rem}
-.quote{margin:0;background:var(--surface);border-radius:var(--r-md);padding:1.8rem 1.6rem;box-shadow:var(--sh-1);
-  display:flex;flex-direction:column;gap:1.3rem;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.quote:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.quote blockquote{margin:0;font-family:var(--font-display);font-size:1.02rem;font-weight:400;line-height:1.7;color:var(--ink)}
-.quote figcaption{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;align-items:center;margin-block-start:auto}
-.quote figcaption b{grid-column:2;font-size:.88rem;color:var(--ink);font-weight:600}
-.quote figcaption i{grid-column:2;font-style:normal;font-size:.8rem;color:var(--muted)}
-
-/* ---------- faq ---------- */
-.faq{border-block-start:1px solid var(--line-strong)}
-.faq details{border-block-end:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;padding:1.25rem 2.5rem 1.25rem 0;font-family:var(--font-display);font-size:1.02rem;color:var(--ink);position:relative;transition:color .3s var(--ease)}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;inset-inline-end:.35rem;inset-block-start:1.65rem;inline-size:11px;block-size:11px;
-  border-inline-start:1.5px solid var(--muted);border-block-end:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .35s var(--ease)}
-.faq summary:hover{color:var(--accent)}
-.faq details[open] summary::after{transform:rotate(-135deg)}
-.faq details[open] summary{color:var(--accent)}
-.faq p{padding-block:0 1.4rem;font-size:.95rem;max-inline-size:66ch}
-
-/* ---------- cta ---------- */
-.cta{background:var(--ink);color:#DCE6E0;padding-block:clamp(60px,8vw,100px)}
-.cta__inner{display:grid;gap:1rem;justify-items:start;max-inline-size:720px}
-.cta h2{color:#fff;font-size:clamp(1.6rem,3vw,2.25rem)}
-.cta p{color:rgba(236,242,238,.75)}
-.cta__actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-block-start:.8rem}
-.cta .btn--solid{background:#EAF1EC;color:var(--ink)}
-.cta .btn--solid:hover{background:#fff}
-
-/* ---------- footer ---------- */
-.footer{background:var(--paper);border-block-start:1px solid var(--line);padding-block:3.4rem 2rem}
-.footer__grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:2rem 1.5rem;padding-block-end:2.6rem;border-block-end:1px solid var(--line)}
-.footer__brand p{font-size:.88rem;margin-block-start:.7rem;max-inline-size:32ch}
-.footer__loc{font-size:.8rem;color:var(--muted)}
-.footer__col{display:grid;gap:.55rem;align-content:start}
-.footer__col h4{font-size:.82rem;color:var(--muted);font-weight:500;font-family:var(--font-body);margin-block-end:.5rem}
-.footer__col a{font-size:.88rem;color:var(--ink-2);transition:color .3s var(--ease)}
-.footer__col a:hover{color:var(--accent)}
-.footer__base{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem 1.5rem;padding-block-start:1.6rem;font-size:.8rem;color:var(--muted)}
-.footer__credit{font-family:var(--font-display)}
-.footer__credit span{color:var(--ink)}
-.footer__attr a{text-decoration:underline;text-underline-offset:3px}
-.footer__attr a:hover{color:var(--ink)}
-
-/* ---------- reveal ---------- */
-[data-reveal]{opacity:1;transform:none}
-html.js [data-reveal]{opacity:0;transform:translateY(14px)}
-html.js [data-reveal].is-in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
-
-/* ---------- responsive ---------- */
-@media (max-width:1040px){
-  .hero__grid,.calc{grid-template-columns:minmax(0,1fr)}
-  .hero__visual{margin-block-start:1.6rem}
-  .float-card{inset-inline-start:auto;inset-inline-end:auto;inset-block-end:-30px}
-  .panel{grid-template-columns:minmax(0,1fr)}
-  .footer__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:860px){
-  .nav,.topbar__actions{display:none}
-  .menu-btn{display:flex}
-  .topbar__inner{block-size:68px;justify-content:space-between}
-  .step{grid-template-columns:60px minmax(0,1fr);gap:1rem;padding-block:1.5rem}
-  .calc__form{grid-template-columns:minmax(0,1fr)}
-  .field--half{grid-column:auto}
-}
-@media (max-width:620px){
-  body{font-size:16px}
-  .hero__cta{gap:.9rem}
-  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .kpis .kpi:last-child{display:none}
-  .table th:nth-child(2),.table td:nth-child(2){display:none}
-  .float-card{position:static;inline-size:auto;margin-block-start:1rem}
-  .band__stats{gap:1.4rem 2.4rem}
-  .footer__grid{grid-template-columns:minmax(0,1fr)}
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  html{scroll-behavior:auto}
-  html.js [data-reveal]{opacity:1;transform:none}
-}
+<script src="app.js"></script>
+</body>
+</html>
